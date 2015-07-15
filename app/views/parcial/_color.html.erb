@@ -1,0 +1,13 @@
+<% case @valor%>
+  <%when 0 then%>
+    <tr class="info">
+  <%when 1 then%>
+    <tr class="active">
+  <%when 2 then%>
+    <tr class="danger">
+  <%when 3 then %>
+    <tr class="success">
+  <%when 4 then @valor = -1%>
+    <tr class="warning">
+<%end%>
+<%@valor = @valor + 1%>

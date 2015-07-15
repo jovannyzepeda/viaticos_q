@@ -1,0 +1,29 @@
+
+<h1>Listing Proyects </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Zone</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @proyects.each do |proyect| %>
+      <tr>
+        <td><%= proyect.zone.name %></td>
+        <td><%= proyect.name %></td>
+        <td><%= link_to 'Show', [@zone,proyect] %></td>
+        <td><%= link_to 'Edit', edit_zone_proyect_path(@zone, proyect) %></td>
+        <td><%= link_to 'Destroy', [@zone,proyect], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Proyect', new_zone_proyect_path(@zone) %>
+<%= link_to 'Back', zones_path %>

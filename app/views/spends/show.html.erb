@@ -1,0 +1,54 @@
+<div class="col-md-4 col-md-pushed-4 col-md-offset-4">
+  <%if @spend.ticket_file_name != nil%>
+    <a class="fancybox" rel="group" href="<%=@spend.ticket.url(:thumb)%>">
+      <%= image_tag @spend.ticket.url(:thumb) , class: 'img-responsive img-circle'%>
+    </a>
+  <%end%>
+</div>
+<div class="col-md-10 col-md-offset-1 col-md-pushed-1">
+  <p id="notice"><%= notice %></p>
+
+  <p>
+  <table class="table table-bordered spacedor">
+    <caption class="top-center">
+      <strong>Gasto #<%=@spend.id%></strong>
+    </caption>
+    <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Tipo</th>
+          <th>Importe</th>
+          <th>Comentarios</th>
+          <th>Comprobante</th>
+          <th>Numero comprobante</th>
+          <th>Usuario</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="info">
+          <td><%= @spend.fecha %></td>
+          <td><%= @spend.tipo %></td>
+          <td><%= @spend.importe %></td>
+          <td><%= @spend.comntarios %></td>
+          <% if @spend.comprobante == 1%>
+            <td>SI</td>
+          <%else%>
+            <td>NO</td>
+          <%end%>
+          <td><%= @spend.numero_comprobante %></td>
+          <td><%= @spend.user.email %></td>
+          <%if current_user.is_admin? || current_user.email == @spend.user.email%>
+              <td>
+                <%= link_to 'Editar', edit_zone_proyect_spend_path(@zone,@proyect,@spend)  %>
+              </td>
+          <%end%>
+          <%if current_user.is_admin?%>
+            <td><%= link_to 'Eliminar', [@zone,@proyect,@spend], method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+          <%end%>
+        </tr>
+     
+    </tbody>
+  </table>
+
+  <%= link_to 'Back', [@zone,@proyect], class: "btn btn-info fa fa-arrow-left float_right " %>
+</div>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  proyect_id: 
+  fecha: 2015-07-12
+  tipo: MyString
+  importe: 9.99
+  comntarios: MyText
+  comprobante: 1
+  numero_comprobante: 1
+  user_id: 
+
+two:
+  proyect_id: 
+  fecha: 2015-07-12
+  tipo: MyString
+  importe: 9.99
+  comntarios: MyText
+  comprobante: 1
+  numero_comprobante: 1
+  user_id: 
