@@ -2,9 +2,13 @@
   <strong><%=@proyect.name%></strong>
   
 </h2>
-<%= link_to 'Agregar un gasto', new_zone_proyect_spend_path(@zone,@proyect) ,class: "btn btn-primary fa fa-plus edit "%>
-<%= link_to 'Agregar un viatico', new_zone_proyect_viatico_path(@zone,@proyect) ,class: "btn btn-primary fa fa-plus edit "%>
+<%= link_to ' Agregar un gasto', new_zone_proyect_spend_path(@zone,@proyect) ,class: "btn btn-primary fa fa-plus edit "%>
+<%= link_to ' Agregar un viatico', new_zone_proyect_viatico_path(@zone,@proyect) ,class: "btn btn-info fa fa-money edit "%>
+<%if current_user.id == @proyect.user.id || current_user.is_admin?%>
+  <%= link_to ' Agregar un Broker', new_zone_proyect_broker_path(@zone,@proyect) ,class: "btn btn-warning fa fa-user edit "%>
+<%end%>
 <%= link_to ' Regresar', zone_path(@zone) ,class: "btn btn-info fa fa-arrow-left float_right "%>
+<%=link_to ' Generar XLS', zone_proyect_spends_path(@zone,@proyect),class: "btn btn-danger fa fa-file-excel-o edit "%>
 <table class="table table-bordered">
 	<caption class="top-center">
 		<strong>Lista de Gastos del proyecto</strong>
@@ -81,6 +85,34 @@
     <% end %>
   </tbody>
 </table>
+<div class="col-md-12">
+  <div class="col-md-6 col-md-offset-3">
+    <table class="table table-bordered spacedor">
+      <caption class="top-center">
+        <strong>Lista de colaboradores del proyecto</strong>
+      </caption>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Correo de colaborador</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @valor = 0 %>
+        <% @proyect.brokers.each do |broker| %>
+          <%= render "parcial/color"%>
+            <td><%= broker.id %></td>
+            <td><%= broker.user.email %></td>
+            <%if current_user.email == @proyect.user.email || current_user.is_admin?%>
+            <td><%= link_to 'Eliminar', [@zone,@proyect,broker], method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+            <%end%>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 <%if current_user.is_admin? || current_user.email == @proyect.user.email%>
 <%= link_to ' Editar', edit_zone_proyect_path(@zone,@proyect) ,class: "btn btn-warning fa fa-edit"%>
 <%end%>

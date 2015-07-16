@@ -49,5 +49,6 @@ gem 'devise'
 
 gem 'paperclip'
 
-gem 'jquery-rails'
 gem 'fancybox2-rails', '~> 0.2.8'
+
+

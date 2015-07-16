@@ -1,39 +1,18 @@
-<h1>Listing Spends</h1>
+<div class="col-md-6 col-md-offset-3">
+  <h1 class="center">Generacion de archivo XLS</h1>
+  <form method="get" action="/zones/1/proyects/30/spends/">
+    <div class="form-group date">
+      <label for = 'inicio'>Fecha Inicio:</label>
+      <%= date_field(:xls,:inicio) %>
+    </div>
+    <div class="form-group date">
+      <label for= "fin">Fecha Fin:</label>
+      <%= date_field(:xls,:fin)%>
+    </div>
+    <div class="actions">
+      <input class="btn btn-primary btn-sm guardar" type="submit"></input>
+    </div>
+  </form>
 
-<table>
-  <thead>
-    <tr>
-      <th>Proyect</th>
-      <th>Fecha</th>
-      <th>Tipo</th>
-      <th>Importe</th>
-      <th>Comntarios</th>
-      <th>Comprobante</th>
-      <th>Numero comprobante</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @spends.each do |spend| %>
-      <tr>
-        <td><%= spend.proyect %></td>
-        <td><%= spend.fecha %></td>
-        <td><%= spend.tipo %></td>
-        <td><%= spend.importe %></td>
-        <td><%= spend.comntarios %></td>
-        <td><%= spend.comprobante %></td>
-        <td><%= spend.numero_comprobante %></td>
-        <td><%= spend.user %></td>
-        <td><%= link_to 'Show', spend %></td>
-        <td><%= link_to 'Edit', edit_spend_path(spend) %></td>
-        <td><%= link_to 'Destroy', spend, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Spend', new_spend_path %>
+  <%= link_to ' Regresar', [@zone,@proyect], class: "btn btn-info float_right " %>
+</div>

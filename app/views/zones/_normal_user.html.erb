@@ -1,0 +1,30 @@
+  <table class="table table-bordered">
+    <caption class="top-center">
+      <strong>Lista de Proyectos</strong>
+    </caption>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Proyecto</th>
+        <th>Administrador de proyecto</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%@valor = 0%>
+      <% @broker.each do |proyecto| %>
+        <%if current_user.id == proyecto.user_id%>
+          <%= render "parcial/color"%>
+            <td><%= link_to proyecto.proyect.id, [@zone, proyecto.proyect]%></td>
+            <td><%= link_to proyecto.proyect.name, [@zone, proyecto.proyect]%></td>
+            <td><%= proyecto.proyect.user.email%></td>
+            <%if current_user.email == proyecto.proyect.user.email || current_user.is_admin? %>
+            <td>
+              <%= link_to 'Editar', edit_zone_proyect_path(@zone, proyecto.proyect)%>
+            </td>
+            <%end%>
+          </tr>
+        <%end%>
+      <% end %>
+    </tbody>
+  </table>

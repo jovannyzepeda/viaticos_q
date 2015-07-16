@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :proyects do
           resources :spends
           resources :viaticos
+          resources :brokers
       end
   end
   

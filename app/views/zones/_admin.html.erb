@@ -1,0 +1,28 @@
+  <table class="table table-bordered">
+    <caption class="top-center">
+      <strong>Lista de Proyectos</strong>
+    </caption>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Proyecto</th>
+        <th>Administrador de proyecto</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%@valor = 0%>
+      <% @broker.each do |proyecto| %>
+          <%= render "parcial/color"%>
+            <td><%= link_to proyecto.id, [@zone, proyecto]%></td>
+            <td><%= link_to proyecto.name, [@zone, proyecto]%></td>
+            <td><%= proyecto.user.email%></td>
+            <td>
+              <%= link_to 'Editar', edit_zone_proyect_path(@zone, proyecto)%>
+            </td>
+            <td><%= link_to 'Eliminar', [@zone,proyecto], method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+          </tr>
+        <%end%>
+    </tbody>
+  </table>
+  <%= link_to ' Editar', edit_zone_path(@zone) ,class: "btn btn-warning fa fa-edit"%>

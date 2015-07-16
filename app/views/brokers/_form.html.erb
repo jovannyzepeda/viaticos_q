@@ -1,0 +1,30 @@
+<%= form_for([@zone,@proyect,@broker]) do |f| %>
+  <% if @broker.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@broker.errors.count, "error") %> prohibited this broker from being saved:</h2>
+
+      <ul>
+      <% @broker.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%if not @user.empty?%>
+    <div class="form-group dates">
+      <%= f.label :user_id, "Correo de Usuario" %><br>
+        <%= f.select(:user_id) do %>
+          <% @user.each do |c| %>
+            <%= content_tag(:option, c.email, value: c.id) %>
+          <% end %>
+        <%end%>
+    </div>
+    <div class="actions">
+      <%= f.submit "Agregar Broker" , class: 'btn btn-primary btn-sm guardar'%>
+    </div>
+    <%else%>
+    <div class="alert alert-danger center">
+      !Todos los usuarios pertenecen a este proyecto
+    </div>
+  <%end%>
+<% end %>

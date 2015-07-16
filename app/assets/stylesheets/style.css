@@ -44,10 +44,8 @@ p.footer{text-align: center;font-family: arial; font-weight: 700; vertical-align
 li.title > h2 > a {text-decoration: none;color: white!important;}
 a:hover{background-color: transparent;}
 .no_border{border: 0px!important;}
-div.date > select {
+div.date > select , div.dates > select {
   display: block;
-  float: left;
-  width: 30%;
   margin-right:3%; 
   height: 34px;
   padding: 6px 12px;
@@ -63,5 +61,9 @@ div.date > select {
   -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
   -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+div.date > select{
+  width: 30%;
+  float: left;
 }
 th,td{text-align: center;} 

@@ -13,7 +13,11 @@ class ZonesController < ApplicationController
   # GET /zones/1.json
   def show
     @proyect = Proyect.new
-    @broker = Broker.where(user_id: current_user.id)
+    if current_user.is_admin?
+      @broker = Proyect.all.order("created_at DESC")
+    else
+      @broker = Broker.where(user_id: current_user.id).order("created_at DESC")
+    end
   end
 
   # GET /zones/new

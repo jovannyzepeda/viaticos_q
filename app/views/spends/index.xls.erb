@@ -1,0 +1,53 @@
+<table>
+
+  <thead>
+    <tr>
+      <th>Proyecto</th>
+      <th>Fecha de Peticion</th>
+      <th>Tipo de Gasto</th>
+      <th>Importe</th>
+      <th>Comentarios</th>
+      <th>Comprobante</th>
+      <th>Numero comprobante</th>
+      <th>Ticket</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spends.each do |spend| %>
+      <tr>
+        <td><%= spend.proyect.name %></td>
+        <td><%= spend.fecha %></td>
+        <td><%= spend.tipo %></td>
+        <td><%= spend.importe %></td>
+        <td><%= spend.comntarios %></td>
+        <td><%= spend.comprobante %></td>
+        <td><%= spend.numero_comprobante %></td>
+        <%if spend.ticket_file_name != nil%>
+        <td><%= image_tag spend.ticket.url(:thumb)%></td>
+        <%end%>
+  
+      </tr>
+    <% end %>
+  </tbody>
+
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Fecha</th>
+      <th>Creador</th>
+      <th>Cantidad</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @viaticos.each do |viatico| %>
+      <tr>
+        <td><%= viatico.id%></td>
+        <td><%= viatico.fecha %></td>
+        <td><%= viatico.user.email %></td>
+        <td><%= viatico.cantidad %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

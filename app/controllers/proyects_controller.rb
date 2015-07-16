@@ -23,6 +23,7 @@ class ProyectsController < ApplicationController
     zone = Zone.find(params[:zone_id])
     @spend = Spend.new
     @viatico = Viatico.new
+    @broker = Broker.new
     #2nd you retrieve the comment thanks to params[:id]
     @proyects = zone.proyects.find(params[:id])
 
@@ -51,10 +52,8 @@ class ProyectsController < ApplicationController
   def create
 
     @proyect = current_user.proyects.new(proyect_params)
-    @proyect.user_id = current_user.id
+   
     @proyect.zone = @zone
-    @proyect.brokers = params[:brokers]
-    @proyect.brokers << current_user.id
     respond_to do |format|
       if @proyect.save
         format.html { redirect_to [@zone,@proyect], notice: 'Proyect was successfully created.' }

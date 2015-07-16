@@ -6,12 +6,19 @@ class SpendsController < ApplicationController
   # GET /spends
   # GET /spends.json
   def index
-    @spends = Spend.all
+    @spends = Spend.where("user_id = ?",current_user.id)
+    @viaticos = Viatico.where("user_id = ?",current_user.id)
+    respond_to do |format|
+        format.html
+        format.csv {send_data @spends.to_csv}
+        format.xls #{send_data @spends.to_csv(col_sep:'\t')}
+    end
   end 
 
   # GET /spends/1
   # GET /spends/1.json
   def show
+  
   end
 
   # GET /spends/new
