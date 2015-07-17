@@ -24,7 +24,7 @@
 					</li>
 					<%if current_user.is_admin?%>
 						<li class= "col-md main">
-							<%= link_to "Registrar", new_user_registration_path, class: "green no-decoration"%>
+							<%= link_to "Registrar", admins_path, class: "green no-decoration"%>
 						</li>
 					<%end%>
 				<%end%>

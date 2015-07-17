@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
-  devise_for :users
- resources :specials 
+  devise_for :users 
+  resources :admins, :controller => "admins"
+  
+ 
   resources :zones do
       resources :proyects do
           resources :spends

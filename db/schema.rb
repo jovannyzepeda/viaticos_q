@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714232245) do
+ActiveRecord::Schema.define(version: 20150717151337) do
 
   create_table "brokers", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -43,12 +43,13 @@ ActiveRecord::Schema.define(version: 20150714232245) do
     t.integer  "comprobante",         limit: 4
     t.integer  "numero_comprobante",  limit: 4
     t.integer  "user_id",             limit: 4
-    t.datetime "created_at",                                                null: false
-    t.datetime "updated_at",                                                null: false
+    t.datetime "created_at",                                                            null: false
+    t.datetime "updated_at",                                                            null: false
     t.string   "ticket_file_name",    limit: 255
     t.string   "ticket_content_type", limit: 255
     t.integer  "ticket_file_size",    limit: 4
     t.datetime "ticket_updated_at"
+    t.integer  "status",              limit: 4,                             default: 1
   end
 
   add_index "spends", ["proyect_id"], name: "index_spends_on_proyect_id", using: :btree

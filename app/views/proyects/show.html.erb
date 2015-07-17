@@ -29,6 +29,7 @@
   <tbody>
   	<% @valor = 0 %>
     <% @proyect.spends.each do |spend| %>
+      
     	<%= render "parcial/color"%>
      
         <td><%= link_to spend.id, [@zone,@proyect,spend] %></td>

@@ -1,0 +1,28 @@
+<div class="col-md-10 col-md-offset-1">
+  <h2 class="proyect_name alert alert-info">
+    <strong>Administracion de Usuarios</strong> 
+  </h2>
+  <%= link_to ' Crear usuario', new_admin_path, class: "btn btn-primary float_right " %>
+<table class="table table-bordered top">
+<thead>
+  <tr>
+    <th>#</th>
+    <th>Correo de usuario</th>
+
+  </tr>
+</thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id%></td>
+        <td><%= user.email %></td>
+        <td>
+          <%= link_to 'Eliminar', admins_path, method: :destroy %>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+  <%= link_to ' Regresar', root_path, class: "btn btn-info float_right " %>
+</div>
