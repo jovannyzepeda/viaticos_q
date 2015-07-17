@@ -13,7 +13,7 @@
     <tbody>
       <%@valor = 0%>
       <% @broker.each do |proyecto| %>
-        <%if current_user.id == proyecto.user_id%>
+        <%if proyecto.proyect.zone_id == @zone.id%>
           <%= render "parcial/color"%>
             <td><%= link_to proyecto.proyect.id, [@zone, proyecto.proyect]%></td>
             <td><%= link_to proyecto.proyect.name, [@zone, proyecto.proyect]%></td>

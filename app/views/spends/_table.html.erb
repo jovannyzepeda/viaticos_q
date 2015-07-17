@@ -1,14 +1,13 @@
-<table>
+
+<table class="table table-bordered top">
+<thead>
   <tr>
-    <th></th>
-    <th>Reporte de gastos</th>
-    <th></th>
+    <th>Reporte de gastos:</th>
     <th><%= @val[:inicio]%></th>
-    <th>-</th>
     <th><%= @val[:fin]%></th>
-    <th></th>
   </tr>
-<tr></tr>
+</thead>
+<thead>
   <tr>
     <th>Nombre:</th>
     <th><%=current_user.email%></th>
@@ -17,7 +16,7 @@
     <th>Deposito Adelantado</th>
     <th>$ <%= @total %></th>
   </tr>
-<tr></tr>
+</thead>
   <thead>
     <tr>
       <th >Comprobante</th>

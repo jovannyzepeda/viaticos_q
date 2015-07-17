@@ -14,7 +14,7 @@ class ZonesController < ApplicationController
   def show
     @proyect = Proyect.new
     if current_user.is_admin?
-      @broker = Proyect.all.order("created_at DESC")
+      @broker = Proyect.all.order("created_at DESC").where("zone_id = ?",@zone)
     else
       @broker = Broker.where(user_id: current_user.id).order("created_at DESC")
     end

@@ -44,7 +44,7 @@ p.footer{text-align: center;font-family: arial; font-weight: 700; vertical-align
 li.title > h2 > a {text-decoration: none;color: white!important;}
 a:hover{background-color: transparent;}
 .no_border{border: 0px!important;}
-div.date > select , div.dates > select {
+div.date > select , div.dates > select, #xls_inicio,#xls_fin {
   display: block;
   margin-right:3%; 
   height: 34px;
@@ -67,3 +67,4 @@ div.date > select{
   float: left;
 }
 th,td{text-align: center;} 
+td > img{width: 150px;height: 150px;}

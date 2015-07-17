@@ -6,12 +6,21 @@ class SpendsController < ApplicationController
   # GET /spends
   # GET /spends.json
   def index
-    @spends = Spend.where("user_id = ?",current_user.id)
-    @viaticos = Viatico.where("user_id = ?",current_user.id)
-    respond_to do |format|
-        format.html
-        format.csv {send_data @spends.to_csv}
-        format.xls #{send_data @spends.to_csv(col_sep:'\t')}
+    @val = params[:xls]
+    unless @val.blank?
+      @spends = Spend.where("user_id = ? AND fecha BETWEEN ? AND ?",current_user.id,@val[:inicio],@val[:fin])
+      @viaticos = Viatico.where("user_id = ? AND fecha BETWEEN ? AND ?",current_user.id,@val[:inicio],@val[:fin])
+      unless @viaticos.blank?
+        @total = 0
+        @viaticos.each do |total|
+            @total = @total + total.cantidad
+        end
+      end
+      respond_to do |format|
+          format.html
+          format.csv {send_data @spends.to_csv}
+          format.xls #{send_data @spends.to_csv(col_sep:'\t')}
+      end
     end
   end 
 
