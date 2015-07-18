@@ -28,6 +28,9 @@
 						</li>
 					<%end%>
 				<%end%>
+				<%unless  @first_user.present?%>
+						<%= link_to "Registrar", new_admin_path, class: "green no-decoration"%>
+				<%end%>
 				
 			</ul>
 			

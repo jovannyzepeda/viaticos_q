@@ -12,12 +12,13 @@
   </tr>
 </thead>
   <tbody>
+
     <% @users.each do |user| %>
       <tr>
         <td><%= user.id%></td>
         <td><%= user.email %></td>
         <td>
-          <%= link_to 'Eliminar', admins_path, method: :destroy %>
+          <%= link_to "Destroy", admin_destroy_path(user), method: :delete, data: { confirm: "You sure?" }%>
         </td>
       </tr>
     <% end %>

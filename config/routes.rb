@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   devise_for :users 
   resources :admins, :controller => "admins"
-  
+   match 'admins/:id' => 'admins#destroy', :via => :delete, :as => :admin_destroy
  
   resources :zones do
       resources :proyects do

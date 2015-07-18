@@ -1,6 +1,5 @@
 class WelcomeController < ApplicationController
-before_action :auth
-
+	before_action :auth
 
   def index
 

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness:  true
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :proyects
+  has_many :proyects, :dependent => :destroy
   has_many :spends
   has_many :viaticos
   has_many   :brokers
