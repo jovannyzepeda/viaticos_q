@@ -20,7 +20,7 @@ class BrokersController < ApplicationController
     @proyect = @zone.proyects.find(params[:proyect_id])
     @broker = Broker.new
     @notuser = Array.new(User.joins(:brokers).where("proyect_id = ?", @proyect))
-    @user = Array.new(User.all)
+    @user = Array.new(User.where("tipo_usuario != 0"))
    
     @notuser.each do |s|
       @user.delete_if {|x| x.id == s.id }

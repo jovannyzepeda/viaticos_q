@@ -3,7 +3,7 @@ class AdminsController < ApplicationController
     before_action :authenticate_user!, except: [:edit,:show]
 
   def index
-    @users = User.where("id != ?",current_user.id)
+    @users = User.where("id != ? AND tipo_usuario = 1",current_user.id)
   end
 
   def new
@@ -32,11 +32,15 @@ class AdminsController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-
-    
-      flash[:notice] = @user
+    user = User.find_by(id: params[:id])
+    user.tipo_usuario = 0
+    user.email = user.email + user.id.to_s
+    #M21crhXQ#
+    user.encrypted_password = '$2a$10$BttO0P5nE9k9n5lsIwZoc.G5x5hg8vIOkm3iM9GJyoFwq9uN51mKC'
+    if user.save
+      flash[:notice] = "Usuario eliminado correctamente"
       redirect_to admins_path
+    end
    
   end 
   private

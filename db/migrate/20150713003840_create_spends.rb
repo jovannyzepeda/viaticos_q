@@ -7,7 +7,7 @@ class CreateSpends < ActiveRecord::Migration
       t.decimal :importe, precision: 7, scale: 2
       t.text :comntarios
       t.integer :comprobante
-      t.integer :numero_comprobante
+      t.string :numero_comprobante
       t.references :user, index: true, foreign_key: true
 
       t.timestamps null: false
