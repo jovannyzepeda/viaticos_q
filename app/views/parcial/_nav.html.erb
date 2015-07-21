@@ -1,38 +1,39 @@
-<header>
-		<nav class = "gray white large">
-			<ul class = "row center-xs main">
-				<li class = "col-md main title">
-					<h2 class="no-margin">
-					<%= link_to image_tag('image.png') , root_path , class: 'image_main'%>
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		
+    <div class="navbar-header">
+    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+        </button>
+        <%= link_to image_tag('image.png') , root_path , class: 'image_main'%>
+    </div>
 
-					</h2>
-				</li>
-				<!--Inserccion a lascategoris por medio de un
-				Ciclo en el programa-->
-				
-				<li class= "col-md main">
-					<%= link_to "Inicio" , root_path%>
-				</li>
-				<li class= "col-md main">
-					<%= link_to "Areas de proyectos" ,zones_path%>
-				</li>
-				
+	<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+	<ul class = "nav navbar-nav">
+		
+		<li >
+			<%= link_to "Inicio" , root_path, class: "page-scroll"%>
+		</li>
+		<li>
+			<%= link_to "Areas de proyectos" ,zones_path,class: "page-scroll"%>
+		</li>
+	
 
-				<% if user_signed_in? %>
-					<li class= "col-md main">
-						<%= link_to "", destroy_user_session_path, method: :delete, class: "fa fa-power-off red no-decoration"%>
-					</li>
-					<%if current_user.is_admin?%>
-						<li class= "col-md main">
-							<%= link_to "Registrar", admins_path, class: "green no-decoration"%>
-						</li>
-					<%end%>
-				<%end%>
-				<%unless  @first_user.present?%>
-						<%= link_to "Registrar", new_admin_path, class: "green no-decoration"%>
-				<%end%>
-				
-			</ul>
-			
-		</nav>
-	</header>
+		<% if user_signed_in? %>
+			<li class= >
+				<%= link_to "", destroy_user_session_path, method: :delete, class: "fa fa-power-off red no-decoration page-scroll"%>
+			</li>
+			<%if current_user.is_admin?%>
+				<li>
+					<%= link_to "Registrar", admins_path, class: "green  page-scroll"%>
+				</li>
+			<%end%>
+		<%end%>
+		<%unless  @first_user.present?%>
+				<%= link_to "Registrar", new_admin_path, class: "green no-decoration"%>
+		<%end%>
+	
+	</ul>
+</nav>
+
+     
+ 

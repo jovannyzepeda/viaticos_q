@@ -3,27 +3,29 @@
     <strong>Administracion de Usuarios</strong> 
   </h2>
   <%= link_to ' Crear usuario', new_admin_path, class: "btn btn-primary float_right " %>
-<table class="table table-bordered top">
-<thead>
-  <tr>
-    <th>#</th>
-    <th>Correo de usuario</th>
-
-  </tr>
-</thead>
-  <tbody>
-
-    <% @users.each do |user| %>
+  <div class="table-responsive">
+    <table class="table table-bordered top">
+    <thead>
       <tr>
-        <td><%= user.id%></td>
-        <td><%= user.email %></td>
-        <td>
-          <%= link_to "Destroy", admin_destroy_path(user), method: :delete, data: { confirm: "You sure?" }%>
-        </td>
-      </tr>
-    <% end %>
+        <th>#</th>
+        <th>Correo de usuario</th>
 
-  </tbody>
-</table>
+      </tr>
+    </thead>
+      <tbody>
+
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id%></td>
+            <td><%= user.email %></td>
+            <td>
+              <%= link_to "Destroy", admin_destroy_path(user), method: :delete, data: { confirm: "You sure?" }%>
+            </td>
+          </tr>
+        <% end %>
+
+      </tbody>
+    </table>
+  </div>
   <%= link_to ' Regresar', root_path, class: "btn btn-info float_right " %>
 </div>

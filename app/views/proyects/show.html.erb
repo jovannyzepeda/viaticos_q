@@ -9,109 +9,116 @@
 <%end%>
 <%= link_to ' Regresar', zone_path(@zone) ,class: "btn btn-info fa fa-arrow-left float_right "%>
 <%=link_to ' Generar XLS', zone_proyect_spends_path(@zone,@proyect),class: "btn btn-danger fa fa-file-excel-o edit "%>
-<table class="table table-bordered">
-	<caption class="top-center">
-		<strong>Lista de Gastos del proyecto</strong>
-	</caption>
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Fecha</th>
-      <th>Tipo</th>
-      <th>Importe</th>
-      <th>Comentarios</th>
-      <th>Comprobante</th>
-      <th>Numero comprobante</th>
-      <th>Usuario</th>
-    </tr>
-  </thead>
-
-  <tbody>
-  	<% @valor = 0 %>
-    <% @proyect.spends.each do |spend| %>
-      
-    	<%= render "parcial/color"%>
-     
-        <td><%= link_to spend.id, [@zone,@proyect,spend] %></td>
-        <td><%= spend.fecha %></td>
-        <td><%= spend.tipo %></td>
-        <td><%= spend.importe %></td>
-        <td><%= spend.comntarios %></td>
-        <% if spend.comprobante == 1%>
-          <td>SI</td>
-        <%else%>
-          <td>NO</td>
-        <%end%>
-        <td><%= spend.numero_comprobante %></td>
-        <td><%= spend.user.email %></td>
-        <%if current_user.is_admin? || current_user.email == spend.user.email%>
-        <td><%= link_to 'Editar', edit_zone_proyect_spend_path(@zone,@proyect,spend) %></td>
-        <%end%>
-        <%if current_user.is_admin?%>
-        <td><%= link_to 'Eliminar', [@zone,@proyect,spend], method: :delete, data: { confirm: 'Estas seguro?' } %></td>
-        <%end%>
+<div class="table-responsive">
+  <table class="table table-bordered">
+  	<caption class="top-center">
+  		<strong>Lista de Gastos del proyecto</strong>
+  	</caption>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Fecha</th>
+        <th>Tipo</th>
+        <th>Importe</th>
+        <th>Comentarios</th>
+        <th>Comprobante</th>
+        <th>Numero comprobante</th>
+        <th>Usuario</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<table class="table table-bordered spacedor">
-  <caption class="top-center">
-    <strong>Lista de Viaticos del proyecto</strong>
-  </caption>
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Fecha</th>
-      <th>Creador</th>
-      <th>Cantidad</th>
-    </tr>
-  </thead>
+    <tbody>
+    	<% @valor = 0 %>
+      <% @proyect.spends.each do |spend| %>
+        
+      	<%= render "parcial/color"%>
+       
+          <td><%= link_to spend.id, [@zone,@proyect,spend] %></td>
+          <td><%= spend.fecha %></td>
+          <td><%= spend.tipo %></td>
+          <td><%= spend.importe %></td>
+          <td><%= spend.comntarios %></td>
+          <% if spend.comprobante == 1%>
+            <td>SI</td>
+          <%else%>
+            <td>NO</td>
+          <%end%>
+          <td><%= spend.numero_comprobante %></td>
+          <td><%= spend.user.email %></td>
+          <%if current_user.is_admin? || current_user.email == spend.user.email%>
+          <td><%= link_to 'Editar', edit_zone_proyect_spend_path(@zone,@proyect,spend) %></td>
+          <%end%>
+          <%if current_user.is_admin?%>
+          <td><%= link_to 'Eliminar', [@zone,@proyect,spend], method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+          <%end%>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-  <tbody>
-    <% @valor = 0 %>
-    <% @proyect.viaticos.each do |viatico| %>
-      <%= render "parcial/color"%>
-        <td><%= link_to viatico.id, [@zone,@proyect,viatico] %></td>
-        <td><%= viatico.fecha %></td>
-        <td><%= viatico.user.email %></td>
-        <td><%= viatico.cantidad %></td>
-        <%if current_user.is_admin? || current_user.email == viatico.user.email%>
-        <td><%= link_to 'Editar', edit_zone_proyect_viatico_path(@zone,@proyect,viatico) %></td>
-        <%end%>
-        <%if current_user.is_admin?%>
-        <td><%= link_to 'Eliminar', [@zone,@proyect,viatico], method: :delete, data: { confirm: 'Estas seguro?' } %></td>
-        <%end%>
+<div class="table-responsive">
+  <table class="table table-bordered spacedor">
+    <caption class="top-center">
+      <strong>Lista de Viaticos del proyecto</strong>
+    </caption>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Fecha</th>
+        <th>Creador</th>
+        <th>Cantidad</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @valor = 0 %>
+      <% @proyect.viaticos.each do |viatico| %>
+        <%= render "parcial/color"%>
+          <td><%= link_to viatico.id, [@zone,@proyect,viatico] %></td>
+          <td><%= viatico.fecha %></td>
+          <td><%= viatico.user.email %></td>
+          <td><%= viatico.cantidad %></td>
+          <%if current_user.is_admin? || current_user.email == viatico.user.email%>
+          <td><%= link_to 'Editar', edit_zone_proyect_viatico_path(@zone,@proyect,viatico) %></td>
+          <%end%>
+          <%if current_user.is_admin?%>
+          <td><%= link_to 'Eliminar', [@zone,@proyect,viatico], method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+          <%end%>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
 <div class="col-md-12">
   <div class="col-md-6 col-md-offset-3">
-    <table class="table table-bordered spacedor">
-      <caption class="top-center">
-        <strong>Lista de colaboradores del proyecto</strong>
-      </caption>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Correo de colaborador</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @valor = 0 %>
-        <% @proyect.brokers.each do |broker| %>
-          <%= render "parcial/color"%>
-            <td><%= broker.id %></td>
-            <td><%= broker.user.email %></td>
-            <%if current_user.email == @proyect.user.email || current_user.is_admin?%>
-            <td><%= link_to 'Eliminar', [@zone,@proyect,broker], method: :delete, data: { confirm: 'Estas seguro?' } %></td>
-            <%end%>
+    <div class="table-responsive">
+      <table class="table table-bordered spacedor">
+        <caption class="top-center">
+          <strong>Lista de colaboradores del proyecto</strong>
+        </caption>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Correo de colaborador</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% @valor = 0 %>
+          <% @proyect.brokers.each do |broker| %>
+            <%= render "parcial/color"%>
+              <td><%= broker.id %></td>
+              <td><%= broker.user.email %></td>
+              <%if current_user.email == @proyect.user.email || current_user.is_admin?%>
+              <td><%= link_to 'Eliminar', [@zone,@proyect,broker], method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+              <%end%>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 <%if current_user.is_admin? || current_user.email == @proyect.user.email%>
