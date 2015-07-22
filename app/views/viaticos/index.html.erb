@@ -1,31 +1,41 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Viaticos</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Proyect</th>
-      <th>Cantidad</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @viaticos.each do |viatico| %>
+<div class="col-md-8 col-md-pushed-2 col-md-offset-2">
+  <h2 class="proyect_name alert alert-info">
+    <strong>Viaticos solicitados</strong>
+  </h2>
+<div class="table-responsive">
+  <table class="table table-bordered spacedor">
+    <thead>
       <tr>
-        <td><%= viatico.user %></td>
-        <td><%= viatico.proyect %></td>
-        <td><%= viatico.cantidad %></td>
-        <td><%= link_to 'Show', viatico %></td>
-        <td><%= link_to 'Edit', edit_viatico_path(viatico) %></td>
-        <td><%= link_to 'Destroy', viatico, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Estado</th>
+        <th>Fecha</th>
+        <th>Creador</th>
+        <th>Cantidad</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<%= link_to 'New Viatico', new_viatico_path %>
+    <tbody>
+      <% @valor = 0 %>
+      <% @viaticos.each do |viatico| %>
+        <%= render "parcial/color"%>
+          <%if viatico.status == 1%>
+            <td>Reportado</td>
+          <%else%>
+            <td>Activo</td>
+          <%end%>
+          <td><%= viatico.fecha %></td>
+          <td><%= viatico.user.email %></td>
+          <td><%= viatico.cantidad %></td>
+          <%if current_user.is_admin? || current_user.email == viatico.user.email%>
+          <td><%= link_to 'Editar', edit_zone_proyect_viatico_path(@zone,@proyect,viatico) %></td>
+          <%end%>
+          <%if current_user.is_admin?%>
+          <td><%= link_to 'Eliminar', [@zone,@proyect,viatico], method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+          <%end%>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @viaticos %> 
+</div>
+<%= link_to 'Back', [@zone,@proyect], class: "btn btn-info fa fa-arrow-left float_right " %>
+</div>

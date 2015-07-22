@@ -1,0 +1,55 @@
+<div class="col-md-12">
+	<h2 class="proyect_name alert alert-info">
+	  <strong>Gastos generados del proyecto</strong>
+	</h2>
+	<div class="table-responsive">
+	  <table class="table table-bordered">
+	    <thead>
+	      <tr>
+	      	<th>Estado</th>
+	        <th>Fecha</th>
+	        <th>Tipo</th>
+	        <th>Importe</th>
+	        <th>Comentarios</th>
+	        <th>Comprobante</th>
+	        <th>Numero comprobante</th>
+	        <th>Usuario</th>
+	      </tr>
+	    </thead>
+
+	    <tbody>
+	    	<% @valor = 0 %>
+	      <% @spends.each do |spend| %>
+	        
+	      	<%= render "parcial/color"%>
+	       
+	          <%if spend.status == 1%>
+	            <td>Reportado</td>
+	          <%else%>
+	            <td>Activo</td>
+	          <%end%>
+	          <td><%= spend.fecha %></td>
+	          <td><%= spend.tipo %></td>
+	          <td><%= spend.importe %></td>
+	          <td><%= spend.comntarios %></td>
+	          <% if spend.comprobante == 1%>
+	            <td>SI</td>
+	          <%else%>
+	            <td>NO</td>
+	          <%end%>
+	          <td><%= spend.numero_comprobante %></td>
+	          <td><%= spend.user.email %></td>
+	          <%if current_user.is_admin? || current_user.email == spend.user.email%>
+	          <td><%= link_to 'Editar', edit_zone_proyect_spend_path(@zone,@proyect,spend) %></td>
+	          <%end%>
+	          <%if current_user.is_admin?%>
+	          <td><%= link_to 'Eliminar', [@zone,@proyect,spend], method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+	          <%end%>
+	        </tr>
+	      <% end %>
+	    </tbody>
+	  </table>
+	  <%= will_paginate @spends %> 
+	</div>
+	<%= link_to 'Back', [@zone,@proyect], class: "btn btn-info fa fa-arrow-left float_right " %>
+</div>

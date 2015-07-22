@@ -6,10 +6,11 @@ class SpendsController < ApplicationController
   # GET /spends
   # GET /spends.json
   def index
+    
     @val = params[:xls]
     unless @val.blank?
-      @spends = Spend.where("user_id = ? AND fecha BETWEEN ? AND ?",current_user.id,@val[:inicio],@val[:fin])
-      @viaticos = Viatico.where("user_id = ? AND fecha BETWEEN ? AND ?",current_user.id,@val[:inicio],@val[:fin])
+      @spends = Spend.where("user_id = ? AND status = 0 AND fecha BETWEEN ? AND ?",current_user.id,@val[:inicio],@val[:fin])
+      @viaticos = Viatico.where("user_id = ? AND status = 0 AND fecha BETWEEN ? AND ?",current_user.id,@val[:inicio],@val[:fin])
       unless @viaticos.blank?
         @total = 0
         @viaticos.each do |total|
@@ -84,7 +85,6 @@ class SpendsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_spend
@@ -93,7 +93,7 @@ class SpendsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def spend_params
-      params.require(:spend).permit(:proyect_id, :fecha, :tipo, :importe, :comntarios, :comprobante, :numero_comprobante, :user_id, :ticket)
+      params.require(:spend).permit(:proyect_id, :fecha, :tipo, :importe, :comntarios, :comprobante, :numero_comprobante, :user_id, :ticket,:status)
     end
     def set_proyect
       @proyect = Proyect.find(params[:proyect_id])

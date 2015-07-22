@@ -13,7 +13,7 @@
 
   <div class="form-group date">
     <%= f.label :fecha %><br>
-    <%= f.date_field :fecha %>
+    <%= f.date_field :fecha ,required: "required"%>
   </div>
   <br>
   <div class="form-group dates">
@@ -34,6 +34,10 @@
     <%= f.label :importe %><br>
     <%= f.text_field :importe , required: "required", class: "form-control", placeholder: "Dato numerico Ej. 123.98"%>
   </div>
+  <% if @report == 1%>
+    <%= f.label :status , "Reportado" %><br>
+    <%= f.check_box :status%>
+  <%end%>
   <div class="form-group">
     <%= f.label :comntarios %><br>
     <%= f.text_area :comntarios , class: "form-control"%>

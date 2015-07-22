@@ -56,3 +56,4 @@ gem 'paperclip'
 gem 'fancybox2-rails', '~> 0.2.8'
 
 
+gem 'will_paginate' 

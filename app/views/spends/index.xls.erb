@@ -32,6 +32,7 @@
   </thead>
 
   <tbody>
+  <%unless @spends.blank?%>
  
     <% @spends.each do |spend| %>
       <tr>
@@ -52,6 +53,7 @@
   
       </tr>
     <% end %>
+    <%end%>
 
   </tbody>
 </table>

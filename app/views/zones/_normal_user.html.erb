@@ -5,7 +5,6 @@
     </caption>
     <thead>
       <tr>
-        <th>#</th>
         <th>Proyecto</th>
         <th>Administrador de proyecto</th>
       </tr>
@@ -16,7 +15,6 @@
       <% @broker.each do |proyecto| %>
         <%if proyecto.proyect.zone_id == @zone.id%>
           <%= render "parcial/color"%>
-            <td><%= link_to proyecto.proyect.id, [@zone, proyecto.proyect]%></td>
             <td><%= link_to proyecto.proyect.name, [@zone, proyecto.proyect]%></td>
             <td><%= proyecto.proyect.user.email%></td>
             <%if current_user.email == proyecto.proyect.user.email || current_user.is_admin? %>

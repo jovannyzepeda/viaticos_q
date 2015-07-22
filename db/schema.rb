@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717151337) do
+ActiveRecord::Schema.define(version: 20150721040900) do
 
   create_table "brokers", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20150717151337) do
     t.decimal  "importe",                           precision: 7, scale: 2
     t.text     "comntarios",          limit: 65535
     t.integer  "comprobante",         limit: 4
-    t.integer  "numero_comprobante",  limit: 4
+    t.string   "numero_comprobante",  limit: 255
     t.integer  "user_id",             limit: 4
     t.datetime "created_at",                                                            null: false
     t.datetime "updated_at",                                                            null: false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20150717151337) do
     t.string   "ticket_content_type", limit: 255
     t.integer  "ticket_file_size",    limit: 4
     t.datetime "ticket_updated_at"
-    t.integer  "status",              limit: 4,                             default: 1
+    t.integer  "status",              limit: 4,                             default: 0
   end
 
   add_index "spends", ["proyect_id"], name: "index_spends_on_proyect_id", using: :btree
@@ -78,9 +78,10 @@ ActiveRecord::Schema.define(version: 20150717151337) do
     t.integer  "user_id",    limit: 4
     t.integer  "proyect_id", limit: 4
     t.decimal  "cantidad",             precision: 8, scale: 2
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
     t.date     "fecha"
+    t.integer  "status",     limit: 4,                         default: 0
   end
 
   add_index "viaticos", ["proyect_id"], name: "index_viaticos_on_proyect_id", using: :btree

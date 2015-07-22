@@ -10,7 +10,6 @@
       </caption>
       <thead>
         <tr>
-          <th>#</th>
           <th>Nombre de Area</th>
         </tr>
       </thead>
@@ -19,11 +18,10 @@
         <%@valor = 0%>
         <% @zones.each do |zone| %>
           <%= render "parcial/color"%>
-            <td><%= link_to zone.id, [zone,@proyect] %></td>
             <td><%= link_to zone.name, [zone,@proyect] %></td>
             <%if current_user.is_admin? %>
               <td><%= link_to 'Editar', edit_zone_path(zone) %></td>
-              <td><%= link_to 'Eliminar', zone, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+              <td><% link_to 'Eliminar', zone, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
             <%end%>
           </tr>
         <% end %>

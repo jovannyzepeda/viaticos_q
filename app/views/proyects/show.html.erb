@@ -16,7 +16,6 @@
   	</caption>
     <thead>
       <tr>
-        <th>#</th>
         <th>Fecha</th>
         <th>Tipo</th>
         <th>Importe</th>
@@ -29,12 +28,10 @@
 
     <tbody>
     	<% @valor = 0 %>
-      <% @proyect.spends.each do |spend| %>
+      <% @spends.each do |spend| %>
         
       	<%= render "parcial/color"%>
-       
-          <td><%= link_to spend.id, [@zone,@proyect,spend] %></td>
-          <td><%= spend.fecha %></td>
+          <td><%= link_to  spend.fecha ,[@zone,@proyect,spend]%></td>
           <td><%= spend.tipo %></td>
           <td><%= spend.importe %></td>
           <td><%= spend.comntarios %></td>
@@ -55,6 +52,7 @@
       <% end %>
     </tbody>
   </table>
+  <%= will_paginate @spends %> 
 </div>
 
 <div class="table-responsive">
@@ -73,7 +71,7 @@
 
     <tbody>
       <% @valor = 0 %>
-      <% @proyect.viaticos.each do |viatico| %>
+      <% @viaticos.each do |viatico| %>
         <%= render "parcial/color"%>
           <td><%= link_to viatico.id, [@zone,@proyect,viatico] %></td>
           <td><%= viatico.fecha %></td>
@@ -124,4 +122,5 @@
 <%if current_user.is_admin? || current_user.email == @proyect.user.email%>
 <%= link_to ' Editar', edit_zone_proyect_path(@zone,@proyect) ,class: "btn btn-warning fa fa-edit"%>
 <%end%>
-
+<%=link_to ' Gastos Realizados', zone_proyect_lista_path(@zone,@proyect),class: "btn btn-success fa fa-usd edit"%>
+<%=link_to ' Viaticos Solicitados', zone_proyect_viaticos_path(@zone,@proyect),class: "btn btn-success fa fa-money edit "%>

@@ -3,30 +3,22 @@ class ProyectsController < ApplicationController
   before_action :set_proyect, only: [:show, :edit, :update, :destroy]
   before_action :set_zone
   before_action :autenticacion_admin!, only: [:destroy]
+  before_action :authenticate_user!, except: [:index]
   # GET /proyects
   # GET /proyects.json
   def index
-  
-    zone = Zone.find(params[:zone_id])
-    #2nd you get all the comments of this post
-    @proyects = zone.proyects
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @proyects }
-    end
+    redirect_to zones_path
   end
 
   # GET /proyects/1
   # GET /proyects/1.json
   def show
-
     zone = Zone.find(params[:zone_id])
-    @spend = Spend.new
-    @viatico = Viatico.new
+    @spends = Spend.paginate(:page => params[:page], :per_page => 20).where("proyect_id = ? AND status = 0",@proyect).order('fecha  DESC')
+    @viaticos = Viatico.where("proyect_id = ? AND status = 0",@proyect).order('fecha  DESC')
     @broker = Broker.new
     #2nd you retrieve the comment thanks to params[:id]
     @proyects = zone.proyects.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @proyects }
