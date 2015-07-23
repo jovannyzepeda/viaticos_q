@@ -13,7 +13,16 @@ class ViaticosController < ApplicationController
   # GET /viaticos/1.json
   def show
   end
-
+  def status
+    viatico = Viatico.find_by(id: params[:status])
+    viatico.status = 1
+    if viatico.save
+      respond_to do |format|
+        format.html { redirect_to [@zone,@proyect], notice: "Viatico Reportado correctamente" }
+      end
+    end
+    
+  end
   # GET /viaticos/new
   def new
     @zone = Zone.find(params[:zone_id])

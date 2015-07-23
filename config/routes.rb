@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   resources :zones do
       resources :proyects do
           resources :spends
+          match 'spends/:status' => 'spends#status', :via => :post, :as => :spend_status
           resources :lista
           resources :viaticos
+          match 'viaticos/:status' => 'viaticos#status', :via => :post, :as => :viatico_status
           resources :brokers
       end
   end

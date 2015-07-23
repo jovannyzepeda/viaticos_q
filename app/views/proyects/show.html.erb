@@ -43,7 +43,9 @@
           <td><%= spend.numero_comprobante %></td>
           <td><%= spend.user.email %></td>
           <%if current_user.is_admin? || current_user.email == spend.user.email%>
-          <td><%= link_to 'Editar', edit_zone_proyect_spend_path(@zone,@proyect,spend) %></td>
+            <td><%= link_to "Reportar", zone_proyect_spend_status_path(@zone,@proyect,spend.id), method: :status, data: { confirm: "Deseas continuar?" }%>
+            </td>
+            <td><%= link_to 'Editar', edit_zone_proyect_spend_path(@zone,@proyect,spend) %></td>
           <%end%>
           <%if current_user.is_admin?%>
           <td><%= link_to 'Eliminar', [@zone,@proyect,spend], method: :delete, data: { confirm: 'Estas seguro?' } %></td>
@@ -62,7 +64,6 @@
     </caption>
     <thead>
       <tr>
-        <th>#</th>
         <th>Fecha</th>
         <th>Creador</th>
         <th>Cantidad</th>
@@ -73,11 +74,13 @@
       <% @valor = 0 %>
       <% @viaticos.each do |viatico| %>
         <%= render "parcial/color"%>
-          <td><%= link_to viatico.id, [@zone,@proyect,viatico] %></td>
-          <td><%= viatico.fecha %></td>
+          
+          <td><%= link_to viatico.fecha, [@zone,@proyect,viatico]%></td>
           <td><%= viatico.user.email %></td>
           <td><%= viatico.cantidad %></td>
           <%if current_user.is_admin? || current_user.email == viatico.user.email%>
+          <td><%= link_to "Reportar", zone_proyect_viatico_status_path(@zone,@proyect,viatico.id), method: :status, data: { confirm: "Deseas continuar?" }%>
+            </td>
           <td><%= link_to 'Editar', edit_zone_proyect_viatico_path(@zone,@proyect,viatico) %></td>
           <%end%>
           <%if current_user.is_admin?%>
@@ -98,7 +101,6 @@
         </caption>
         <thead>
           <tr>
-            <th>#</th>
             <th>Correo de colaborador</th>
           </tr>
         </thead>
@@ -107,7 +109,6 @@
           <% @valor = 0 %>
           <% @proyect.brokers.each do |broker| %>
             <%= render "parcial/color"%>
-              <td><%= broker.id %></td>
               <td><%= broker.user.email %></td>
               <%if current_user.email == @proyect.user.email || current_user.is_admin?%>
               <td><%= link_to 'Eliminar', [@zone,@proyect,broker], method: :delete, data: { confirm: 'Estas seguro?' } %></td>

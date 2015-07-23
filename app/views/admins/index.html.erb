@@ -7,7 +7,6 @@
     <table class="table table-bordered top">
     <thead>
       <tr>
-        <th>#</th>
         <th>Correo de usuario</th>
 
       </tr>
@@ -16,7 +15,6 @@
 
         <% @users.each do |user| %>
           <tr>
-            <td><%= user.id%></td>
             <td><%= user.email %></td>
             <td>
               <%= link_to "Destroy", admin_destroy_path(user), method: :delete, data: { confirm: "You sure?" }%>

@@ -30,6 +30,18 @@ class SpendsController < ApplicationController
   
   end
 
+  def status
+    spend = Spend.find_by(id: params[:status])
+    spend.status = 1
+    if spend.save
+      respond_to do |format|
+        format.html { redirect_to [@zone,@proyect], notice: "Gasto Reportado correctamente" }
+      end
+    end
+    
+  end
+
+
   # GET /spends/new
   def new
     @zone = Zone.find(params[:zone_id])
