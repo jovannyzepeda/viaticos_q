@@ -8,12 +8,14 @@ class Spend < ActiveRecord::Base
   validates_attachment_content_type :ticket, :content_type => /\Aimage\/.*\Z/
   
   def self.to_csv(options = {})
-  	CSV.generate(options) do |csv|
+  	file = CSV.generate(options) do |csv|
   		csv << column_names
   		all.each do |products|
   			csv << products.attributes.values_at(*column_names)
   		end	
   	end
+    mime_type = selected_format.downcase # can be either `xls` or `csv`
+    send_data file, type: mime_type, filename: filename, disposition: 'attachment'
   end
 
 end

@@ -19,8 +19,7 @@ class SpendsController < ApplicationController
       end
       respond_to do |format|
           format.html
-          format.csv {send_data @spends.to_csv}
-          format.xls #{send_data @spends.to_csv(col_sep:'\t')}
+          format.xlsx #{send_data @spends.to_csv(col_sep:'\t')}
       end
     end
   end 

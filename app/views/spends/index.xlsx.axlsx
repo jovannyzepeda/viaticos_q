@@ -1,0 +1,42 @@
+wb = xlsx_package.workbook
+styles = wb.styles
+  title = styles.add_style :sz => 12, :b => true, :u => true , :border => {:style => :thin, :color => "0000000"},:alignment=>{:horizontal => :center}
+
+  pascal_colors = styles.add_style :bg_color => '9A2EFE', :fg_color => 'FFFFFF' , :b => true , :border => {:style => :thin, :color => "0000000"},:alignment=>{:horizontal => :center}
+
+  borde = styles.add_style :border => {:style => :thin, :color => "0000000"},:alignment=>{:horizontal => :center}
+  center = styles.add_style :alignment=>{:horizontal => :center}
+x = 0
+wb.add_worksheet(name: "Reporte") do |sheet|
+  sheet.add_row ["Reporte de gastos:", @val[:inicio],@val[:fin]], :style => title 
+
+  sheet.add_row ["Nombre:",current_user.email,"","Deposito Adelantado: $"+@total.to_s], :style => borde
+
+  sheet.add_row
+
+  sheet.add_row ["Comprobante","Numero comprobante", "Proyecto", "Fecha", "Tipo de Gasto", "Importe", "Comentarios", "Ticket"], :style => pascal_colors
+
+  @spends.each do |dato|
+    x = x + 1
+
+    sheet.add_row [
+    if dato.comprobante == 1
+      "SI"
+      else
+      "NO"
+      end,dato.numero_comprobante,dato.proyect.name,dato.fecha,dato.tipo,dato.importe,dato.comntarios ,
+      if dato.ticket_file_name != nil
+        "LINK DE Ticket"
+      else
+        "N/A"
+      end]
+
+      if dato.ticket_file_name 
+        img = dato.ticket.url
+        img = request.base_url + img
+        sheet.add_hyperlink :location => img,:ref => sheet.rows.last.cells.last
+      end
+      
+  end
+end
+
