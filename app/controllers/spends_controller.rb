@@ -16,10 +16,13 @@ class SpendsController < ApplicationController
         @viaticos.each do |total|
             @total = @total + total.cantidad
         end
-      end
-      respond_to do |format|
+        respond_to do |format|
           format.html
           format.xlsx #{send_data @spends.to_csv(col_sep:'\t')}
+        end
+      end
+      unless @spends.present?
+          flash[:notice] = "No existen datos en la busqueda solicitada" 
       end
     end
   end 
