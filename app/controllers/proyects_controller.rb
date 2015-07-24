@@ -3,13 +3,11 @@ class ProyectsController < ApplicationController
   before_action :set_proyect, only: [:show, :edit, :update, :destroy]
   before_action :set_zone
   before_action :autenticacion_admin!, only: [:destroy]
-  before_action :authenticate_user!, except: [:index]
+  
   # GET /proyects
   # GET /proyects.json
  
-  def index
-    redirect_to zones_path
-  end
+  
   # GET /proyects/1
   # GET /proyects/1.json
   def show
