@@ -138,7 +138,10 @@ a:focus {
         background: #000;
     }
 }
-
+p.notice,p.alert{
+    margin: 0px;
+    font-size: 16px;
+}
 .intro {
     display: table;
     width: 100%;
@@ -146,7 +149,7 @@ a:focus {
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    margin-top: -90px;
+    
     background: url("intro-bg.jpg") no-repeat bottom center scroll;
     background-color: #000;
     -webkit-background-size: cover;

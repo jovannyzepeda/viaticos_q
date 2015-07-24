@@ -1,4 +1,6 @@
 <div class="col-md-4 col-md-pushed-4 col-md-offset-4">
+  <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
   <%if @spend.ticket_file_name != nil%>
     <a class="fancybox" rel="group" href="<%=@spend.ticket.url(:thumb)%>">
       <%= image_tag @spend.ticket.url(:thumb) , class: 'img-responsive img-circle'%>

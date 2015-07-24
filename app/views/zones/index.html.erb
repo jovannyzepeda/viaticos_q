@@ -1,16 +1,18 @@
 <div class="col-md-8 col-md-pushed-2 col-md-offset-2">
+  <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
   <h2 class="proyect_name alert alert-info">
-    <strong>Areas de proyectos</strong>
+    <strong>Áreas de proyectos</strong>
   </h2>
   <%= link_to ' Crear Area', new_zone_path ,class: "btn btn-primary fa fa-plus edit "%>
   <div class="table-responsive">
     <table class="table table-bordered">
       <caption class="top-center">
-        <strong>Lista de Areas</strong>
+        <strong>Lista de Áreas</strong>
       </caption>
       <thead>
         <tr>
-          <th>Nombre de Area</th>
+          <th>Nombre de Área</th>
         </tr>
       </thead>
 
@@ -21,7 +23,6 @@
             <td><%= link_to zone.name, [zone,@proyect] %></td>
             <%if current_user.is_admin? %>
               <td><%= link_to 'Editar', edit_zone_path(zone) %></td>
-              <td><% link_to 'Eliminar', zone, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
             <%end%>
           </tr>
         <% end %>

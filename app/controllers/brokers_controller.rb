@@ -2,17 +2,11 @@ class BrokersController < ApplicationController
   before_action :set_broker, only: [:show, :edit, :update, :destroy]
   before_action :auth
   before_action :set_proyect
-  before_action :authenticate_user!, except: [:update, :edit]
+  before_action :authenticate_user!, except: [:index,:update, :edit,:show]
 
   # GET /brokers.json
-  def index
-    @brokers = Broker.all
-  end
 
-  # GET /brokers/1
-  # GET /brokers/1.json
-  def show
-  end
+
 
   # GET /brokers/new
   def new
@@ -56,7 +50,7 @@ class BrokersController < ApplicationController
   def destroy
     @broker.destroy
     respond_to do |format|
-      format.html { redirect_to [@zone,@proyect], notice: 'Broker was successfully destroyed.' }
+      format.html { redirect_to [@zone,@proyect], notice: 'Broker eliminado del proyecto.' }
       format.json { head :no_content }
     end
   end

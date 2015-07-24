@@ -6,10 +6,10 @@ class ProyectsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   # GET /proyects
   # GET /proyects.json
+ 
   def index
     redirect_to zones_path
   end
-
   # GET /proyects/1
   # GET /proyects/1.json
   def show
@@ -71,15 +71,6 @@ class ProyectsController < ApplicationController
     end
   end
 
-  # DELETE /proyects/1
-  # DELETE /proyects/1.json
-  def destroy
-    @proyect.destroy
-    respond_to do |format|
-      format.html { redirect_to zone_path(@zone), notice: 'El proyecto fue eliminado correctamente' }
-      format.json { head :no_content }
-    end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

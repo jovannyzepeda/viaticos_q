@@ -1,5 +1,9 @@
 <div class="col-md-6 col-md-offset-3">
-  <h2>Cambio de password</h2>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <h2 class="proyect_name alert alert-info">
+    <strong>Cambio de password</strong>
+  </h2>
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
@@ -8,7 +12,7 @@
     <div class="field">
       <%= f.label :password, "Nuevo password" %><br />
       <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <em>(Mínimo <%= @minimum_password_length %> characteres)</em>
       <% end %><br />
       <%= f.password_field :password, autofocus: true, autocomplete: "off" ,class: "form-control"%>
     </div>

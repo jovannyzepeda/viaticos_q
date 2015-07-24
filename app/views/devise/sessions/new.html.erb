@@ -1,5 +1,9 @@
 <div class="col-md-6 col-md-offset-3">
-  <h2>Inicio de Sesión</h2>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <h2 class="proyect_name alert alert-info">
+    <strong>Inicio de Sesión</strong>
+  </h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">

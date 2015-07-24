@@ -2,6 +2,7 @@ class ZonesController < ApplicationController
   before_action :auth
   before_action :set_zone, only: [:show, :edit, :update, :destroy]
   before_action :autenticacion_admin!, only: [:destroy]
+  before_action :authenticate_user!, except: [:destroy]
 
   # GET /zones
   # GET /zones.json
@@ -36,7 +37,7 @@ class ZonesController < ApplicationController
 
     respond_to do |format|
       if @zone.save
-        format.html { redirect_to @zone, notice: 'Zone was successfully created.' }
+        format.html { redirect_to @zone, notice: 'Área creada exitosamente' }
         format.json { render :show, status: :created, location: @zone }
       else
         format.html { render :new }
@@ -50,7 +51,7 @@ class ZonesController < ApplicationController
   def update
     respond_to do |format|
       if @zone.update(zone_params)
-        format.html { redirect_to @zone, notice: 'Zone was successfully updated.' }
+        format.html { redirect_to @zone, notice: 'Área actualizada exitosamente' }
         format.json { render :show, status: :ok, location: @zone }
       else
         format.html { render :edit }
@@ -59,15 +60,7 @@ class ZonesController < ApplicationController
     end
   end
 
-  # DELETE /zones/1
-  # DELETE /zones/1.json
-  def destroy
-    @zone.destroy
-    respond_to do |format|
-      format.html { redirect_to zones_url, notice: 'Zone was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
