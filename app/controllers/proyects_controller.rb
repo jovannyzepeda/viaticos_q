@@ -4,49 +4,31 @@ class ProyectsController < ApplicationController
   before_action :set_zone
   before_action :autenticacion_admin!, only: [:destroy]
   
-  # GET /proyects
-  # GET /proyects.json
- 
-  
   # GET /proyects/1
   # GET /proyects/1.json
   def show
-    zone = Zone.find(params[:zone_id])
-    @spends = Spend.paginate(:page => params[:page], :per_page => 20).where("proyect_id = ? AND status = 0",@proyect).order('fecha  DESC')
-    @viaticos = Viatico.where("proyect_id = ? AND status = 0",@proyect).order('fecha  DESC')
-    @broker = Broker.new
-    #2nd you retrieve the comment thanks to params[:id]
-    @proyects = zone.proyects.find(params[:id])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @proyects }
-    end
+    @spends = Spend.paginate(:page => params[:page], :per_page => 20).ultimos_fecha.activos.proyecto(@proyect)
+    @viaticos = Viatico.ultimos_fecha.activos.proyecto(@proyect)
   end
 
   # GET /proyects/new
   def new
     @proyect = Proyect.new
-    @proyect.zone = @zone
-
   end
 
   # GET /proyects/1/edit
   def edit
-    zone = Zone.find(params[:zone_id])
-    #2nd you retrieve the comment thanks to params[:id]
-    @proyects = zone.proyects.find(params[:id])
+
   end
 
   # POST /proyects
   # POST /proyects.json
   def create
-
     @proyect = current_user.proyects.new(proyect_params)
-   
     @proyect.zone = @zone
     respond_to do |format|
       if @proyect.save
-        format.html { redirect_to [@zone,@proyect], notice: 'Proyect was successfully created.' }
+        format.html { redirect_to [@zone,@proyect], notice: 'Proyecto Creado correctamente.' }
         format.json { render :show, status: :created, location: @proyect }
       else
         format.html { render :new }

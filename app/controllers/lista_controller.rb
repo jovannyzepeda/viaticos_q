@@ -1,7 +1,7 @@
 class ListaController < ApplicationController
 	before_action :set_proyect
   def index
-  		@spends = Spend.paginate(:page => params[:page], :per_page => 20).where("user_id = ? AND proyect_id = ?",current_user.id,@proyect).order('fecha  DESC')
+  		@spends = Spend.paginate(:page => params[:page], :per_page => 20).usuario(current_user.id).proyecto(@proyect).ultimos_fecha
   end
   def set_proyect
       @proyect = Proyect.find(params[:proyect_id])

@@ -1,9 +1,9 @@
 class AdminsController < ApplicationController
-  #before_action :autenticacion_admin!, only: [:destroy,:index,:new]
-  #before_action :authenticate_user!, except: [:edit,:show]
+  before_action :autenticacion_admin!, only: [:destroy,:index,:new]
+  before_action :authenticate_user!, except: [:edit,:show]
 
   def index
-    @users = User.where("id != ? AND tipo_usuario = 1",current_user.id)
+    @users = User.lista_usuarios(current_user.id)
   end
 
   def new

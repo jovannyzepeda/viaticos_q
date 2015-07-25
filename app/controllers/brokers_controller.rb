@@ -1,8 +1,7 @@
 class BrokersController < ApplicationController
-  before_action :set_broker, only: [:show, :edit, :update, :destroy]
+  before_action :set_broker, only: [:destroy]
   before_action :auth
   before_action :set_proyect
-  before_action :authenticate_user!, except: [:index,:update, :edit,:show]
 
   # GET /brokers.json
 
@@ -10,15 +9,12 @@ class BrokersController < ApplicationController
 
   # GET /brokers/new
   def new
-    @zone = Zone.find(params[:zone_id])
-    @proyect = @zone.proyects.find(params[:proyect_id])
     @broker = Broker.new
-    @notuser = Array.new(User.joins(:brokers).where("proyect_id = ?", @proyect))
-    @user = Array.new(User.where("tipo_usuario != 0"))
+    @notuser = Array.new(User.joins(:brokers).proyecto(@proyect))
+    @user = Array.new(User.usuario_inactivo)
    
     @notuser.each do |s|
       @user.delete_if {|x| x.id == s.id }
-
     end
   end
 

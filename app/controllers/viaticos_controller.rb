@@ -6,7 +6,7 @@ class ViaticosController < ApplicationController
   # GET /viaticos
   # GET /viaticos.json
   def index
-    @viaticos = Viatico.paginate(:page => params[:page], :per_page => 20).where("user_id = ? AND proyect_id = ?",current_user.id,@proyect).order('fecha  DESC')
+    @viaticos = Viatico.paginate(:page => params[:page], :per_page => 20).usuario(current_user.id).proyecto(@proyect).ultimos_fecha
   end
 
   # GET /viaticos/1
@@ -25,16 +25,12 @@ class ViaticosController < ApplicationController
   end
   # GET /viaticos/new
   def new
-    @zone = Zone.find(params[:zone_id])
-    @proyect = @zone.proyects.find(params[:proyect_id])
     @viatico = Viatico.new
   end
 
   # GET /viaticos/1/edit
   def edit
-    @zone = Zone.find(params[:zone_id])
-    #2nd you retrieve the comment thanks to params[:id]
-    @proyects = @zone.proyects.find(params[:proyect_id])
+
   end
 
   # POST /viaticos

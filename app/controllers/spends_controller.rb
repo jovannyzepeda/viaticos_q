@@ -9,8 +9,8 @@ class SpendsController < ApplicationController
     
     @val = params[:xls]
     unless @val.blank?
-      @spends = Spend.where("user_id = ? AND status = 0 AND fecha BETWEEN ? AND ?",current_user.id,@val[:inicio],@val[:fin])
-      @viaticos = Viatico.where("user_id = ? AND status = 0 AND fecha BETWEEN ? AND ?",current_user.id,@val[:inicio],@val[:fin])
+      @spends = Spend.calendario(@val[:inicio],@val[:fin]).activos.usuario(current_user.id)
+      @viaticos = Viatico.calendario(@val[:inicio],@val[:fin]).activos.usuario(current_user.id)
       unless @viaticos.blank?
         @total = 0
         @viaticos.each do |total|
@@ -26,11 +26,8 @@ class SpendsController < ApplicationController
       end
     end
   end 
-
-  # GET /spends/1
-  # GET /spends/1.json
-  def show
   
+  def show
   end
 
   def status
@@ -47,17 +44,11 @@ class SpendsController < ApplicationController
 
   # GET /spends/new
   def new
-    @zone = Zone.find(params[:zone_id])
-    @proyect = @zone.proyects.find(params[:proyect_id])
     @spend = Spend.new
   end
 
   # GET /spends/1/edit
   def edit
-    @zone = Zone.find(params[:zone_id])
-    #2nd you retrieve the comment thanks to params[:id]
-    @proyects = @zone.proyects.find(params[:proyect_id])
-
   end
 
   # POST /spends

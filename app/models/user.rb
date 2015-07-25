@@ -8,6 +8,6 @@ class User < ActiveRecord::Base
   has_many :spends
   has_many :viaticos
   has_many   :brokers
-  
+  include Scope
   include PermissionsConcern
 end

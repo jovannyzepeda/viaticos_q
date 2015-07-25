@@ -9,6 +9,8 @@ class Proyect < ActiveRecord::Base
   after_create :save_brokers
 
 
+  #scopes
+  include Scope
   private
   def save_brokers
 			Broker.create(user_id: self.user.id,proyect_id: self.id)
