@@ -45,12 +45,15 @@
           <td><%= spend.numero_comprobante %></td>
           <td><%= spend.user.email %></td>
           <%if current_user.is_admin? || current_user.email == spend.user.email%>
-            <td><%= link_to "Reportar", zone_proyect_spend_status_path(@zone,@proyect,spend.id), method: :status, data: { confirm: "Deseas continuar?" }%>
+            <td>
+              <%= link_to "Reportar", zone_proyect_spend_status_path(@zone,@proyect,spend.id), method: :status, data: { confirm: "Deseas continuar?" }%>
             </td>
-            <td><%= link_to 'Editar', edit_zone_proyect_spend_path(@zone,@proyect,spend) %></td>
-          <%end%>
-          <%if current_user.is_admin?%>
-          <td><%= link_to 'Eliminar', [@zone,@proyect,spend], method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+            <td>
+              <%= link_to 'Editar', edit_zone_proyect_spend_path(@zone,@proyect,spend) %>
+            </td>
+            <td>
+              <%= link_to 'Eliminar', [@zone,@proyect,spend], method: :delete, data: { confirm: 'Estas seguro?' } %>
+            </td>
           <%end%>
         </tr>
       <% end %>
@@ -81,12 +84,15 @@
           <td><%= viatico.user.email %></td>
           <td><%= viatico.cantidad %></td>
           <%if current_user.is_admin? || current_user.email == viatico.user.email%>
-          <td><%= link_to "Reportar", zone_proyect_viatico_status_path(@zone,@proyect,viatico.id), method: :status, data: { confirm: "Deseas continuar?" }%>
+            <td>
+              <%= link_to "Reportar", zone_proyect_viatico_status_path(@zone,@proyect,viatico.id), method: :status, data: { confirm: "Deseas continuar?" }%>
             </td>
-          <td><%= link_to 'Editar', edit_zone_proyect_viatico_path(@zone,@proyect,viatico) %></td>
-          <%end%>
-          <%if current_user.is_admin?%>
-          <td><%= link_to 'Eliminar', [@zone,@proyect,viatico], method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+            <td>
+              <%= link_to 'Editar', edit_zone_proyect_viatico_path(@zone,@proyect,viatico) %>
+            </td>
+            <td>
+              <%= link_to 'Eliminar', [@zone,@proyect,viatico], method: :delete, data: { confirm: 'Estas seguro?' } %>
+            </td>
           <%end%>
         </tr>
       <% end %>

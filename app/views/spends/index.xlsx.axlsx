@@ -1,6 +1,6 @@
 wb = xlsx_package.workbook
 styles = wb.styles
-  title = styles.add_style :sz => 12, :b => true, :u => true , :border => {:style => :thin, :color => "0000000"},:alignment=>{:horizontal => :center}
+  title = styles.add_style :sz => 12, :b => true, :u => true 
 
   pascal_colors = styles.add_style :bg_color => '9A2EFE', :fg_color => 'FFFFFF' , :b => true , :border => {:style => :thin, :color => "0000000"},:alignment=>{:horizontal => :center}
 
@@ -8,7 +8,7 @@ styles = wb.styles
   center = styles.add_style :alignment=>{:horizontal => :center}
 x = 0
 wb.add_worksheet(name: "Reporte") do |sheet|
-  sheet.add_row ["Reporte de gastos:", @val[:inicio],@val[:fin]], :style => title 
+  sheet.add_row ["Reporte de gastos:", @val[:inicio].to_date,@val[:fin].to_date] 
 
   sheet.add_row ["Nombre:",current_user.email,"","Deposito Adelantado: $"+@total.to_s], :style => borde
 

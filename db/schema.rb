@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723214858) do
+ActiveRecord::Schema.define(version: 20150723213120) do
 
   create_table "brokers", force: :cascade do |t|
     t.integer  "user_id",    limit: 4

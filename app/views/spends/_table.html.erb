@@ -1,56 +1,57 @@
-
-<table class="table table-bordered top">
-<thead>
-  <tr>
-    <th>Reporte de gastos:</th>
-    <th><%= @val[:inicio]%></th>
-    <th><%= @val[:fin]%></th>
-  </tr>
-</thead>
-<thead>
-  <tr>
-    <th>Nombre:</th>
-    <th><%=current_user.email%></th>
-    <th></th>
-    <th></th>
-    <th>Deposito Adelantado</th>
-    <th>$ <%= @total %></th>
-  </tr>
-</thead>
+<div class="table-responsive">
+  <table class="table table-bordered top">
   <thead>
     <tr>
-      <th >Comprobante</th>
-      <th>Numero comprobante</th>
-      <th>Proyecto</th>
-      <th>Fecha</th>
-      <th>Tipo de Gasto</th>
-      <th>Importe</th>
-      <th>Comentarios</th>
-      <th>Ticket</th>
+      <th>Reporte de gastos:</th>
+      <th><%= @val[:inicio]%></th>
+      <th><%= @val[:fin]%></th>
     </tr>
   </thead>
-
-  <tbody>
- 
-    <% @spends.each do |spend| %>
+  <thead>
+    <tr>
+      <th>Nombre:</th>
+      <th><%=current_user.email%></th>
+      <th></th>
+      <th></th>
+      <th>Deposito Adelantado</th>
+      <th>$ <%= @total %></th>
+    </tr>
+  </thead>
+    <thead>
       <tr>
-        <% if spend.comprobante == 1%>
-          <td>SI</td>
-        <%else%>
-          <td>NO</td>
-        <%end%>
-        <td><%= spend.numero_comprobante %></td>
-        <td><%= spend.proyect.name %></td>
-        <td><%= spend.fecha %></td>
-        <td><%= spend.tipo %></td>
-        <td><%= spend.importe %></td>
-        <td><%= spend.comntarios %></td>
-        <%if spend.ticket_file_name != nil%>
-        <td><%= image_tag spend.ticket.url(:thumb)%></td>
-        <%end%>
-  
+        <th >Comprobante</th>
+        <th>Numero comprobante</th>
+        <th>Proyecto</th>
+        <th>Fecha</th>
+        <th>Tipo de Gasto</th>
+        <th>Importe</th>
+        <th>Comentarios</th>
+        <th>Ticket</th>
       </tr>
-    <% end %>
+    </thead>
 
-  </tbody>
-</table>
+    <tbody>
+   
+      <% @spends.each do |spend| %>
+        <tr>
+          <% if spend.comprobante == 1%>
+            <td>SI</td>
+          <%else%>
+            <td>NO</td>
+          <%end%>
+          <td><%= spend.numero_comprobante %></td>
+          <td><%= spend.proyect.name %></td>
+          <td><%= spend.fecha %></td>
+          <td><%= spend.tipo %></td>
+          <td><%= spend.importe %></td>
+          <td><%= spend.comntarios %></td>
+          <%if spend.ticket_file_name != nil%>
+          <td><%= image_tag spend.ticket.url(:thumb)%></td>
+          <%end%>
+    
+        </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+</div>
