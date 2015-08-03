@@ -1,6 +1,6 @@
 class AdminsController < ApplicationController
-  before_action :autenticacion_admin!, only: [:destroy,:index,:new]
-  before_action :authenticate_user!, except: [:edit,:show]
+  #before_action :autenticacion_admin!, only: [:destroy,:index,:new]
+  #before_action :authenticate_user!, except: [:edit,:show]
 
   def index
     @users = User.lista_usuarios(current_user.id)
