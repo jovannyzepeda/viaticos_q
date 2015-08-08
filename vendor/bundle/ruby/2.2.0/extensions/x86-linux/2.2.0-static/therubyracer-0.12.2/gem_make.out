@@ -1,0 +1,39 @@
+/home/zepeda/.rbenv/versions/2.2.2/bin/ruby -r ./siteconf20150805-26899-1pvwo10.rb extconf.rb
+checking for main() in -lpthread... yes
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling accessor.cc
+compiling primitive.cc
+compiling string.cc
+compiling date.cc
+compiling invocation.cc
+compiling template.cc
+compiling value.cc
+compiling init.cc
+compiling backref.cc
+compiling external.cc
+compiling constants.cc
+compiling handles.cc
+compiling v8.cc
+compiling array.cc
+compiling function.cc
+compiling message.cc
+compiling exception.cc
+compiling trycatch.cc
+compiling signature.cc
+compiling object.cc
+compiling heap.cc
+compiling gc.cc
+compiling locker.cc
+compiling script.cc
+compiling context.cc
+compiling rr.cc
+compiling constraints.cc
+compiling stack.cc
+linking shared-object v8/init.so
+
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 init.so ./.gem.20150805-26899-1h7r7hs/v8

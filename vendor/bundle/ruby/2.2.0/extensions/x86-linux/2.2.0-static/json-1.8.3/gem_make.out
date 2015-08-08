@@ -1,0 +1,9 @@
+/home/zepeda/.rbenv/versions/2.2.2/bin/ruby -r ./siteconf20150805-26899-dezgt3.rb extconf.rb
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+make: No se hace nada para «all».
+
+make "DESTDIR=" install
